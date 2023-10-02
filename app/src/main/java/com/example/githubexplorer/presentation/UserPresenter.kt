@@ -4,28 +4,34 @@ import com.example.githubexplorer.UserActivity
 import com.example.githubexplorer.data.UserCallback
 import com.example.githubexplorer.data.UserRemoteDataSource
 import com.example.githubexplorer.model.User
+import com.example.githubexplorer.model.UserResponse
 
 class UserPresenter(
     private val view: UserActivity,
     private val dataSource: UserRemoteDataSource = UserRemoteDataSource()
 ) : UserCallback {
-    fun isUserValid(userName: String) {
-        if (userName.isEmpty()) {
+    fun isUserValid(username: String) {
+        if (username.isEmpty()) {
             view.userNotValid("Digite um usuário válido")
-            return;
+            return
         }
 
         view.showProgress()
 
-        dataSource.findUser(this)
+        dataSource.findUser(this, username)
     }
 
-    override fun onSuccess(user: User) {
-        view.redirectSuccess(user)
+    override fun onSuccess(user: UserResponse?) {
+        if (user != null) {
+            view.redirectSuccess(user)
+            return
+        }
+
+        view.userNotValid("Ocorreu um erro. Tento novamente mais tarde")
     }
 
-    override fun onError() {
-        // Erros
+    override fun onError(message: String) {
+        view.userNotValid(message)
     }
 
     override fun onComplete() {

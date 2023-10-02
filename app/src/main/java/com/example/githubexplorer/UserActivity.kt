@@ -9,6 +9,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.githubexplorer.data.UserRemoteDataSource
 import com.example.githubexplorer.model.User
+import com.example.githubexplorer.model.UserResponse
 import com.example.githubexplorer.presentation.UserPresenter
 
 class UserActivity : AppCompatActivity() {
@@ -36,8 +37,8 @@ class UserActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    fun redirectSuccess(user: User) {
-        Toast.makeText(this, "Seja bem-vindo, ${user.name}", Toast.LENGTH_SHORT).show()
+    fun redirectSuccess(user: UserResponse) {
+        Toast.makeText(this, "Seja bem-vindo, ${user.avatarUrl}", Toast.LENGTH_SHORT).show()
     }
 
     fun showProgress() {

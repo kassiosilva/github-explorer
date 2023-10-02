@@ -1,9 +1,10 @@
 package com.example.githubexplorer.data
 
 import com.example.githubexplorer.model.User
+import com.example.githubexplorer.model.UserResponse
 
 interface UserCallback {
-    fun onSuccess(user: User)
-    fun onError ()
+    fun onSuccess(user: UserResponse?)
+    fun onError (message: String)
     fun onComplete()
 }
