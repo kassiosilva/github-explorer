@@ -1,6 +1,5 @@
 package com.example.githubexplorer.data
 
-import com.example.githubexplorer.model.User
 import com.example.githubexplorer.model.UserResponse
 
 interface UserCallback {

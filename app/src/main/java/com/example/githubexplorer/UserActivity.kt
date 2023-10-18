@@ -1,5 +1,6 @@
 package com.example.githubexplorer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,8 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.example.githubexplorer.data.UserRemoteDataSource
-import com.example.githubexplorer.model.User
 import com.example.githubexplorer.model.UserResponse
 import com.example.githubexplorer.presentation.UserPresenter
 
@@ -38,7 +37,9 @@ class UserActivity : AppCompatActivity() {
     }
 
     fun redirectSuccess(user: UserResponse) {
-        Toast.makeText(this, "Seja bem-vindo, ${user.avatarUrl}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Seja bem-vindo, ${user.name}", Toast.LENGTH_SHORT).show()
+
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     fun showProgress() {

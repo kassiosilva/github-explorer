@@ -3,7 +3,6 @@ package com.example.githubexplorer.presentation
 import com.example.githubexplorer.UserActivity
 import com.example.githubexplorer.data.UserCallback
 import com.example.githubexplorer.data.UserRemoteDataSource
-import com.example.githubexplorer.model.User
 import com.example.githubexplorer.model.UserResponse
 
 class UserPresenter(
