@@ -3,4 +3,6 @@
     <string name="lets_begin">Vamos começar?</string>
     <string name="your_user">Usuário do github</string>
     <string name="search">Pesquisar</string>
+    <string name="explore_github">Explore repositórios no Github.</string>
+    <string name="search_repo">Digite aqui usuário/repositório</string>
 </resources>
