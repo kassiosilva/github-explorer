@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@id/img_logo" />
 
     <EditText
-        android:id="@+id/edit_search_rep"
+        android:id="@+id/edit_search_repo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -58,12 +58,12 @@
         android:textColor="@color/gray_800"
         android:textColorHint="@color/gray_400"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/button_search"
+        app:layout_constraintEnd_toStartOf="@id/button_search_repo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_explorer" />
 
     <ImageButton
-        android:id="@+id/button_search"
+        android:id="@+id/button_search_repo"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="20dp"
@@ -71,10 +71,10 @@
         android:contentDescription="@null"
         android:paddingHorizontal="16dp"
         android:src="@drawable/ic_search"
-        app:layout_constraintBottom_toBottomOf="@id/edit_search_rep"
+        app:layout_constraintBottom_toBottomOf="@id/edit_search_repo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/edit_search_rep"
-        app:layout_constraintTop_toTopOf="@id/edit_search_rep" />
+        app:layout_constraintStart_toEndOf="@id/edit_search_repo"
+        app:layout_constraintTop_toTopOf="@id/edit_search_repo" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_repos"
@@ -84,7 +84,7 @@
         android:paddingHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_search_rep"
+        app:layout_constraintTop_toBottomOf="@id/edit_search_repo"
         tools:itemCount="4"
         tools:listitem="@layout/item_repo" />
 

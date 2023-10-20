@@ -4,6 +4,6 @@
 ## Todo list de funcionalidades
 - [ ] Splashscreen
 - [ ] Tela de pesquisa do usuário e tratamento de erro
-- [ ] Dashboard
+- [ x ] Dashboard
 - [ ] Pesquisa de repositórios
 - [ ] Listagem de repositórios adicionados
