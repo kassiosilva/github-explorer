@@ -15,6 +15,8 @@ class MainPresenter(
             return
         }
 
+        view.showProgress()
+
         dataSource.getRepository(this, repositoryName)
     }
 
@@ -32,6 +34,6 @@ class MainPresenter(
     }
 
     override fun onComplete() {
-
+        view.hideProgress()
     }
 }
