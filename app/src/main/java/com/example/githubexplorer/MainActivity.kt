@@ -1,10 +1,12 @@
 package com.example.githubexplorer
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerRepos: RecyclerView
     private lateinit var presenter: MainPresenter
     private lateinit var adapter: RepositoryAdapter
+    private lateinit var editSearchRepo: EditText
 
     private val repositories = mutableListOf<RepositoryResponse>()
 
@@ -28,32 +31,42 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         presenter = MainPresenter(this)
+        adapter = RepositoryAdapter(repositories)
+
 
         progressBar = findViewById(R.id.progress_bar_repos)
 
-        adapter = RepositoryAdapter(repositories)
 
         recyclerRepos = findViewById(R.id.recycler_repos)
         recyclerRepos.adapter = adapter
         recyclerRepos.layoutManager = LinearLayoutManager(this)
 
-        val editSearchRepo = findViewById<EditText>(R.id.edit_search_repo)
+        editSearchRepo = findViewById(R.id.edit_search_repo)
         val buttonSearch = findViewById<ImageButton>(R.id.button_search_repo)
 
         buttonSearch.setOnClickListener {
-            presenter.repoNameIsValid(editSearchRepo.text.toString())
+            handleSearchRepo()
         }
 
         editSearchRepo.setOnEditorActionListener { _, actionId, _ ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_DONE -> {
-                    presenter.repoNameIsValid(editSearchRepo.text.toString())
+                    handleSearchRepo()
                     true
                 }
 
                 else -> false
             }
         }
+    }
+
+    private fun handleSearchRepo() {
+        presenter.repoNameIsValid(editSearchRepo.text.toString())
+
+        val keyBoardService = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        keyBoardService.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
+        editSearchRepo.text.clear()
     }
 
     fun errorSearch(message: String) {
