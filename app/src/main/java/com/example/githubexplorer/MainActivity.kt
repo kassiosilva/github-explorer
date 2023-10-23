@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
@@ -42,6 +43,17 @@ class MainActivity : AppCompatActivity() {
         buttonSearch.setOnClickListener {
             presenter.repoNameIsValid(editSearchRepo.text.toString())
         }
+
+        editSearchRepo.setOnEditorActionListener { _, actionId, _ ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_DONE -> {
+                    presenter.repoNameIsValid(editSearchRepo.text.toString())
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 
     fun errorSearch(message: String) {
@@ -72,9 +84,7 @@ class MainActivity : AppCompatActivity() {
             return RepositoryViewHolder(view)
         }
 
-        override fun getItemCount(): Int {
-            return repositories.size
-        }
+        override fun getItemCount(): Int = repositories.size
 
         override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
             val currentItem = repositories[position]
